@@ -69,7 +69,6 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
               <a className="btn btn-ghost" href={waLink(s.whatsapp, d["wa.hello"])} target="_blank" rel="noopener">{d["cta.wa"]}</a>
             </div>
           </div>
-          {!media.hero && <span className="tag">{d.tag}</span>}
         </section>
 
         <section className="pillars" aria-label={d["nav.services"]}>

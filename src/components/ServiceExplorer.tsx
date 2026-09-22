@@ -73,7 +73,6 @@ export default function ServiceExplorer({ locale, d, images, custom, notes, what
             <div className="dlg-img">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src={images[cur.id]} alt="" />
-              {!custom[cur.id] && <span className="tag">{d.tag}</span>}
               <button className="x-close" aria-label={d["d.close"]} onClick={() => setOpenId(null)}>×</button>
             </div>
             <div className="dlg-body">

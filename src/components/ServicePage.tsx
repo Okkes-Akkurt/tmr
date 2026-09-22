@@ -34,7 +34,6 @@ export default async function ServicePage({ locale, service }: { locale: Locale;
             <h1>{t.t}</h1>
             <p>{t.d}</p>
           </div>
-          {!media["s" + service.id] && <span className="tag">{d.tag}</span>}
         </section>
         <section className="block">
           <div className="wrap">

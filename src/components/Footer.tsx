@@ -15,7 +15,6 @@ export default function Footer({ locale, d, s, allCustomImages }: { locale: Loca
           </div>
           <div>{legal.map((x) => <p key={x}>{x}</p>)}</div>
           <div>
-            {!allCustomImages && <p className="small">{d["ft.img"]}</p>}
             <p className="small"><Link href={`/${locale}/kvkk`} style={{ color: "inherit" }}>{d.kvkk}</Link></p>
             <p className="small">© {new Date().getFullYear()} TMR Engineering</p>
           </div>

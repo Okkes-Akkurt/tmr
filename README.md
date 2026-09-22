@@ -22,7 +22,7 @@ Güvenlik üç katmanlı: `proxy.ts` girişi olmayanı panelden uzak tutar, her 
 4. **Authentication > Users > Add user** ile yönetici e-posta ve şifresini oluşturun.
 5. SQL Editor'da (e-postayı değiştirerek) yetki verin:
    ```sql
-   insert into public.admins (user_id) select id from auth.users where email = 'sizin@eposta.com';
+   insert into public.admins (user_id) select id from auth.users where email = 'okkesakkurt46@gmail.com';
    ```
 6. **Project Settings > API Keys** bölümünden proje adresini, publishable key ve secret key değerlerini alın.
 

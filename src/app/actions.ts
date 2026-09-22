@@ -9,6 +9,25 @@ export type LeadState = { status: "idle" | "ok" | "error"; code?: "invalid" | "r
 
 const clean = (v: FormDataEntryValue | null, max: number) => String(v ?? "").trim().slice(0, max);
 
+/** Telefonu +<ülke kodu><numara> biçimine çevirir; geçersizse null döner. */
+function normalizePhone(raw: string): string | null {
+  const s = raw.trim();
+  if (!/^[+\d\s().-]+$/.test(s)) return null;
+  let d = s.replace(/\D/g, "");
+  if (s.startsWith("+")) {
+    // uluslararası biçim, olduğu gibi
+  } else if (s.startsWith("00")) {
+    d = d.slice(2);
+  } else if (d.length === 11 && d.startsWith("0")) {
+    d = "90" + d.slice(1);           // Türkiye: 0532..., 0216...
+  } else if (d.length === 10 && /^[2-5]/.test(d)) {
+    d = "90" + d;                    // Türkiye: 532... (başında 0 yok)
+  } else {
+    return null;                     // ülke kodu olmayan yabancı numara belirsiz
+  }
+  return d.length >= 8 && d.length <= 15 ? "+" + d : null;
+}
+
 export async function submitLead(_prev: LeadState, form: FormData): Promise<LeadState> {
   // Bot tuzakları: görünmez alan doldurulmuşsa veya form 3 saniyeden kısa sürede gönderildiyse sessizce "başarılı" dön.
   if (clean(form.get("website"), 200)) return { status: "ok" };
@@ -18,21 +37,26 @@ export async function submitLead(_prev: LeadState, form: FormData): Promise<Lead
   const v = {
     name: clean(form.get("name"), 120),
     phone: clean(form.get("phone"), 40),
-    email: clean(form.get("email"), 200) || null,
-    company: clean(form.get("company"), 200) || null,
-    location: clean(form.get("location"), 200) || null,
-    message: clean(form.get("message"), 4000) || null,
+    email: clean(form.get("email"), 200),
+    company: clean(form.get("company"), 200),
+    location: clean(form.get("location"), 200),
+    message: clean(form.get("message"), 4000),
     lang: clean(form.get("lang"), 2) === "en" ? "en" : "tr",
   };
   const serviceRaw = clean(form.get("service"), 10);
   const service = serviceRaw === "diger" ? "Diğer / birden fazla iş kalemi" : serviceById(serviceRaw)?.tr.t ?? null;
 
-  const fields: string[] = [];
-  if (v.name.length < 2) fields.push("name");
-  if (v.phone.replace(/\D/g, "").length < 10) fields.push("phone");
-  if (v.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.email)) fields.push("email");
-  if (form.get("kvkk") !== "on") fields.push("kvkk");
-  if (fields.length) return { status: "error", code: "invalid", fields };
+    const phone = normalizePhone(v.phone);
+    const fields: string[] = [];
+    if (v.name.length < 2) fields.push('name');
+    if (!phone) fields.push('phone');
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.email)) fields.push('email');
+    if (v.company.length < 2) fields.push('company');
+    if (!service) fields.push('service');
+    if (v.location.length < 2) fields.push('location');
+    if (v.message.length < 10) fields.push('message');
+    if (form.get('kvkk') !== 'on') fields.push('kvkk');
+    if (fields.length) return { status: 'error', code: 'invalid', fields };
 
   try {
     const h = await headers();
@@ -47,7 +71,7 @@ export async function submitLead(_prev: LeadState, form: FormData): Promise<Lead
       if ((count ?? 0) >= 5) return { status: "error", code: "rate" };
     }
 
-    const { error } = await sb.from("leads").insert({ ...v, service, ip_hash });
+    const { error } = await sb.from('leads').insert({ ...v, phone, service, ip_hash });
     if (error) throw error;
 
     await notify({ ...v, service }).catch(() => {});

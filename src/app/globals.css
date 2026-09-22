@@ -44,6 +44,7 @@ header.top{position:sticky;top:0;z-index:40;background:color-mix(in srgb,var(--b
 :root[data-theme="dark"] .logo-adapt{filter:brightness(0) invert(1)}
 nav.main{margin-left:auto;display:flex;gap:26px;align-items:center}
 nav.main a{text-decoration:none;font-weight:600;color:var(--ink-2)}
+nav.main .btn-o{color:#271313}
 nav.main a:hover{color:var(--ink)}
 .menu-btn{display:none;margin-left:auto;background:none;border:0;width:44px;height:44px;cursor:pointer}
 .menu-btn span{display:block;width:22px;height:2px;background:var(--ink);margin:5px auto;transition:transform .2s}
@@ -179,7 +180,7 @@ form.quote{background:var(--card);border:1px solid var(--line);padding:28px}
 
 footer{background:var(--navy-deep);color:#BFCBDA;padding:48px 0 calc(40px + env(safe-area-inset-bottom,0px))}
 footer .wrap{display:flex;flex-wrap:wrap;gap:24px 48px;justify-content:space-between;align-items:flex-start}
-footer img{height:34px;filter:brightness(0) invert(1)}
+footer img{width:auto;height:34px;filter:brightness(0) invert(1)}
 footer p{margin:6px 0;font-size:.92rem}
 footer .small{font-size:.8rem;color:#8A9BB2;max-width:60ch}
 
@@ -291,3 +292,13 @@ a.svc-row{text-decoration:none;color:inherit}
 .login{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px;background:var(--bg-2)}
 .login form{width:100%;max-width:400px;background:var(--card);border:1px solid var(--line);padding:32px}
 .login img{height:40px;width:auto;margin-bottom:24px}
+.f.has-tip{position:relative}
+.tip{position:absolute;left:0;right:0;top:calc(100% + 8px);z-index:5;
+  background:var(--ink);color:var(--bg);font-size:.85rem;line-height:1.4;
+  padding:8px 12px;border-radius:2px;box-shadow:0 6px 18px rgba(0,0,0,.18);
+  opacity:0;visibility:hidden;transform:translateY(-4px);
+  transition:opacity .15s,transform .15s,visibility .15s;pointer-events:none}
+.tip::before{content:"";position:absolute;top:-6px;left:18px;
+  border:6px solid transparent;border-top:0;border-bottom-color:var(--ink)}
+.f.has-tip:focus-within .tip{opacity:1;visibility:visible;transform:none}
+@media (prefers-reduced-motion:reduce){.tip{transition:none}}
