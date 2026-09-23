@@ -1205,6 +1205,110 @@ export const SERVICES: Service[] = [
     "Execution and handover coordination"
    ]
   }
+ },
+ {
+  "id": 25,
+  "slug": {
+   "tr": "bina-ve-tasiyici-sistem-guclendirme",
+   "en": "building-and-structural-strengthening"
+  },
+  "tr": {
+   "t": "Bina ve taşıyıcı sistem güçlendirme",
+   "d": "Mevcut yapılara yönelik projelendirme ve güçlendirme uygulamaları.",
+   "la": null,
+   "lb": null,
+   "a": [
+    "Güçlendirme donatıları ve çelik profiller",
+    "Çelik levha, ankraj ve bağlantı elemanları",
+    "Beton tamir ve yapısal onarım harçları",
+    "Büzülmez grout ve epoksi enjeksiyon ürünleri",
+    "Kimyasal ankraj ve bağlantı sistemleri"
+   ],
+   "b": [
+    "Mevcut yapı incelemesi ve güçlendirme projelendirmesi",
+    "Betonarme kolon ve kiriş mantolama",
+    "Çelik mantolama ve taşıyıcı eleman takviyesi",
+    "İlave betonarme perde uygulamaları",
+    "Temel ve birleşim bölgesi güçlendirme",
+    "Çatlak enjeksiyonu ve beton onarımı",
+    "Onaylı projeye göre uygulama ve kalite kontrol"
+   ]
+  },
+  "en": {
+   "t": "Building and structural strengthening",
+   "d": "Assessment, design and strengthening works for existing structures.",
+   "la": null,
+   "lb": null,
+   "a": [
+    "Strengthening reinforcement and steel sections",
+    "Steel plates, anchors and fasteners",
+    "Concrete repair and structural repair mortars",
+    "Non-shrink grout and epoxy injection products",
+    "Chemical anchors and connection systems"
+   ],
+   "b": [
+    "Survey of the existing structure and strengthening design",
+    "Concrete jacketing of columns and beams",
+    "Steel jacketing and reinforcement of structural members",
+    "Additional reinforced concrete shear walls",
+    "Foundation and joint strengthening",
+    "Crack injection and concrete repair",
+    "Execution and quality control to the approved design"
+   ]
+  }
+ },
+ {
+  "id": 26,
+  "slug": {
+   "tr": "karbon-fiber-guclendirme",
+   "en": "carbon-fibre-strengthening"
+  },
+  "tr": {
+   "t": "Karbon fiber güçlendirme uygulamaları",
+   "d": "Projesine uygun CFRP sistemleriyle taşıyıcı elemanların güçlendirilmesi.",
+   "la": null,
+   "lb": null,
+   "a": [
+    "Karbon fiber kumaş ve şeritler",
+    "CFRP lamine plakalar",
+    "Sisteme uygun epoksi astar ve doyurma reçineleri",
+    "Yapısal epoksi yapıştırıcı ve yüzey düzeltme ürünleri",
+    "Projeye uygun fiber ankraj elemanları",
+    "Koruyucu son kat ve kaplama ürünleri"
+   ],
+   "b": [
+    "Yüzey hazırlığı, beton onarımı ve köşe düzenleme",
+    "Kolonlarda karbon fiber sargılama",
+    "Kiriş ve döşemelerde CFRP şerit ve plaka uygulamaları",
+    "Proje detayına uygun ankraj ve birleşimler",
+    "Epoksi yapıştırma ve lif doyurma uygulamaları",
+    "Uygulama kontrolü ve koruyucu kaplama",
+    "Sistem ve katmanların mühendislik projesine göre seçimi"
+   ]
+  },
+  "en": {
+   "t": "Carbon fibre (CFRP) strengthening",
+   "d": "Strengthening of structural members with CFRP systems designed for the project.",
+   "la": null,
+   "lb": null,
+   "a": [
+    "Carbon fibre fabrics and strips",
+    "CFRP laminate plates",
+    "Epoxy primers and saturating resins for the system",
+    "Structural epoxy adhesives and levelling products",
+    "Fibre anchors specified in the design",
+    "Protective top coats and finishes"
+   ],
+   "b": [
+    "Surface preparation, concrete repair and corner rounding",
+    "Carbon fibre wrapping of columns",
+    "CFRP strip and plate application on beams and slabs",
+    "Anchors and connections to the design details",
+    "Epoxy bonding and fibre saturation",
+    "Application control and protective coating",
+    "Selection of system and layers according to the engineering design"
+   ]
+  }
  }
 ];
 
@@ -1296,6 +1400,24 @@ export const GROUPS: Group[] = [
    "t": "Industrial and turnkey",
    "d": "Equipment, renovation and corporate supply.",
    "x": "Corporate supply"
+  }
+ },
+ {
+  "id": "g5",
+  "ids": [
+   25,
+   26
+  ],
+  "extraIds": [],
+  "tr": {
+   "t": "Bina güçlendirme ve karbon fiber",
+   "d": "Mevcut yapıların incelenmesi, güçlendirilmesi ve CFRP uygulamaları.",
+   "x": null
+  },
+  "en": {
+   "t": "Strengthening and CFRP",
+   "d": "Assessment, strengthening and CFRP works for existing buildings.",
+   "x": null
   }
  }
 ];
