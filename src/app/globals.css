@@ -302,3 +302,10 @@ a.svc-row{text-decoration:none;color:inherit}
   border:6px solid transparent;border-top:0;border-bottom-color:var(--ink)}
 .f.has-tip:focus-within .tip{opacity:1;visibility:visible;transform:none}
 @media (prefers-reduced-motion:reduce){.tip{transition:none}}
+
+.lang a{white-space:nowrap}
+@media (max-width:860px){
+  nav.main .lang{display:flex;width:100%;margin:16px 0 0;border:1.5px solid var(--line);border-radius:2px;overflow:hidden}
+  nav.main .lang a{flex:1;display:flex;align-items:center;justify-content:center;
+    min-height:48px;padding:12px 0;border-bottom:0;font-size:1rem}
+}
